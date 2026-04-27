@@ -1,0 +1,6 @@
+{
+    "phpserver.phpPath": "C:/xampp/php/php.exe",
+    "phpserver.serverPort": 8080,
+    "phpserver.browse": true,
+    "phpserver.router": ""
+}

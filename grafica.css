@@ -1,0 +1,470 @@
+h1 {
+
+  text-align: center;
+  font-size: 150;
+  font-style: italic;
+}
+
+h2 {
+
+  text-align: center;
+  font-size: 100;
+  font-style: italic;
+}
+
+h3 {
+  position: absolute;
+  top: 0%;
+  left: 30%;
+  ;
+  font-size: 70;
+  font-style: italic;
+  color: white;
+}
+
+h4 {
+  color: white;
+  top: 20%;
+  text-align: center;
+  font-size: 50;
+  font-style: italic;
+}
+
+h5 {
+  position: absolute;
+  top: 30%;
+  left: 55%;
+  font-size: 30;
+  font-style: Candara, serif;
+  ;
+  color: white;
+}
+
+h6 {
+  position: absolute;
+  top: 0%;
+  left: 30%;
+  ;
+  font-size: 70;
+  font-style: italic;
+  color: black;
+}
+
+button {
+  align-items: center;
+
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 50px 160px;
+  cursor: pointer;
+}
+
+
+.hero {
+  position: relative;
+  /* prima immagine kebab */
+  width: 100%;
+  height: 100vh;
+  background-image: url('interniKEBB22.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero2 {
+  /* seconda immagine   */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('interniKEBB.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero3 {
+  /* terza immagine   */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('piadina.jpg');
+  background-size: cover;
+  background-position: center;
+}
+ 
+
+.hero4 {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* tutta l'altezza dello schermo */
+  overflow: hidden;
+}
+
+/* VIDEO */
+.hero4-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover; /* copre tutto senza deformarsi */
+  z-index: 0;
+}
+
+/* OVERLAY SCURO */
+.hero4-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 0.5 = 50% scuro, puoi cambiarlo */
+  z-index: 1;
+}
+
+/* TESTO */
+.hero4-contenuto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+
+
+.hero4-contenuto p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.hero-contenuto a {
+  background: #e63946;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+
+
+
+
+
+.testo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* centra perfettamente */
+  color: white;
+}
+
+.testo2 {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -170%);
+  /* centra e alza il testo */
+  color: white;
+}
+
+.imageRecensioni{
+  background-image: url('recensione1.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  position: fixed;
+  /* ← CAMBIATO DA absolute A fixed */
+  top: 20px;
+  /* ← CAMBIATO per allinearsi bene */
+  left: 43%;
+  /* ← CAMBIATO per allinearsi bene */
+
+  /* Dimensioni — adattale all'immagine */
+  width: 180px;
+  height: 180px;
+
+  /* Rimuove bordi e sfondo del bottone */
+  border-radius: 5%;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.imageHome {
+  background-image: url('kebabbazzo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  position: fixed;
+  /* ← CAMBIATO DA absolute A fixed */
+  top: 20px;
+  /* ← CAMBIATO per allinearsi bene */
+  left: 25px;
+  /* ← CAMBIATO per allinearsi bene */
+
+  /* Dimensioni — adattale all'immagine */
+  width: 80px;
+  height: 80px;
+
+  /* Rimuove bordi e sfondo del bottone */
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.imageHomeCentrale {
+  background-image: url('ordina_qui.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  position: fixed;
+  /* ← CAMBIATO DA absolute A fixed */
+  top: 20px;
+  /* ← CAMBIATO per allinearsi bene */
+  left: 43%;
+  /* ← CAMBIATO per allinearsi bene */
+
+  /* Dimensioni — adattale all'immagine */
+  width: 180px;
+  height: 180px;
+
+  /* Rimuove bordi e sfondo del bottone */
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.imageRettangoloHero3 {
+
+  background-image: url('templateRettangolo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  position: absolute;
+  /* ← CAMBIATO DA absolute A fixed */
+  top: 20%;
+  /* ← CAMBIATO per allinearsi bene */
+  left: 48%;
+  /* ← CAMBIATO per allinearsi bene */
+
+  /* Dimensioni — adattale all'immagine */
+  width: 700px;
+  height: 700px;
+
+  /* Rimuove bordi e sfondo del bottone */
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 9999;
+
+}
+
+/* Hamburger */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: transparent !important;
+  border: none !important;
+  padding: 10px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+}
+
+.hamburger span {
+  display: block;
+  width: 65px;
+  height: 7px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+/* Tenda */
+.tenda {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background-color: black;
+  z-index: 9998;
+  transition: right 0.4s ease;
+  padding: 80px 30px 30px;
+  box-sizing: border-box;
+}
+
+.tenda.aperta {
+  right: 0;
+}
+
+.tenda nav {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.tenda nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.tenda nav a:hover {
+  color: #ccc;
+}
+
+/* Bottone chiudi — override forzato */
+.chiudi {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 28px !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9997;
+}
+
+.overlay.attivo {
+  display: block;
+}
+
+.sottotitolo {
+  text-align: center;
+  font-size: 30px;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+
+/* BOTTONE ORDINA SU MENU.PHP  */
+.bottone3 {
+
+  display: block;
+  margin: 30px auto;
+
+  background-color: #111;
+  color: #fff;
+
+  font-family: Georgia, serif;
+  font-size: 1.1em !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  padding: 18px 60px !important;
+  border: 2px solid #111;
+  border-radius: 4px !important;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+.bottone3:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+
+/* BOTTONE TORNA ALLA HOME CONTATTI */
+.bottone4 {
+
+  display: block;
+  margin: 30px;
+
+  background-color: #111;
+  color: #fff;
+
+  font-family: Georgia, serif;
+  font-size: 1.1em !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  padding: 18px 40px !important;
+  border: 2px solid #111;
+  border-radius: 4px !important;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  z-index: 1000;
+}
+
+
+.bottone4:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+.mappa {
+  position: absolute;
+  top: 100%;
+  left: 30%;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mappa iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  display: block;
+}
+
+.mappaHome {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mappaHome iframe {
+  width: 100%;
+  height: 290px;
+  border: none;
+  display: block;
+  border-radius: 20px;
+}
