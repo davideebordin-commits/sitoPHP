@@ -60,7 +60,7 @@ $nomeutente = $_SESSION['nomeutente'];
 </head>
 <body>
 
-  <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+  <button class="imageHome" onclick="window.location.href='index.php'"></button>
 
   <div class="header">
     <h2>Nuovo ordine di: <?= htmlspecialchars($nomeutente) ?></h2>

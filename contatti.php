@@ -117,7 +117,7 @@
 </head>
 <body>
 
-  <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+  <button class="imageHome" onclick="window.location.href='index.php'"></button>
 
   <div class="header">
     <h1>Contatti</h1>

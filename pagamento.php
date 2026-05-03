@@ -161,7 +161,7 @@ if ($carta_salvata) {
 </head>
 <body>
 
-  <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+  <button class="imageHome" onclick="window.location.href='index.php'"></button>
 
   <div class="header">
     <h2>Pagamento — <?= htmlspecialchars($nomeutente) ?></h2>
@@ -175,7 +175,7 @@ if ($carta_salvata) {
       Grazie <?= htmlspecialchars($nomeutente) ?>, il tuo ordine è stato ricevuto.<br>
       Prepareremo tutto a breve. Buon appetito!
     </p>
-    <a href="schermataIniziale.php" class="btn-home">Torna alla home</a>
+    <a href="index.php" class="btn-home">Torna alla home</a>
   </div>
 
   <?php else: ?>

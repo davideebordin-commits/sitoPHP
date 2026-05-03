@@ -59,7 +59,7 @@ try {
 <link rel="stylesheet" href="grafica.css">
 
 <head>
-    <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+    <button class="imageHome" onclick="window.location.href='index.php'"></button>
 
     <style>
         body {

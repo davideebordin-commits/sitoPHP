@@ -468,3 +468,189 @@ button {
   display: block;
   border-radius: 20px;
 }
+
+
+/* GESTIONE GRAFICA PER TELEFONO */
+@media (max-width: 430px) {
+
+  /* TITOLI */
+  h1 {
+    font-size: 2rem;
+    padding: 0 10px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    padding: 0 10px;
+  }
+
+  h3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+  }
+
+  h4 {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  h5 {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px;
+  }
+
+  h6 {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* BOTTONE PRINCIPALE */
+  button {
+    font-size: 16px;
+    padding: 18px 40px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* HERO IMMAGINI */
+  .hero,
+  .hero2,
+  .hero3 {
+    height: 100svh;
+    background-position: center center;
+  }
+
+  /* HERO VIDEO */
+  .hero4 {
+    height: 100svh;
+  }
+
+  .hero4-contenuto p {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  /* TESTO CENTRATO */
+  .testo {
+    width: 90%;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+  }
+
+  .testo2 {
+    width: 90%;
+    text-align: center;
+    left: 50%;
+  }
+
+  /* LOGO HOME */
+  .imageHome {
+    top: 15px;
+    left: 15px;
+    width: 55px;
+    height: 55px;
+  }
+
+  /* BOTTONE CENTRALE (ordina qui / recensioni) */
+  .imageHomeCentrale,
+  .imageRecensioni {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    top: 15px;
+  }
+
+  /* RETTANGOLO HERO3 */
+  .imageRettangoloHero3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 95%;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    top: 15px;
+    right: 15px;
+    gap: 7px;
+  }
+
+  .hamburger span {
+    width: 40px;
+    height: 5px;
+  }
+
+  /* TENDA MENU */
+  .tenda {
+    width: 100%;
+    right: -100%;
+  }
+
+  .tenda.aperta {
+    right: 0;
+  }
+
+  .tenda nav a {
+    font-size: 20px;
+  }
+
+  /* SOTTOTITOLO */
+  .sottotitolo {
+    font-size: 1.1rem;
+    padding: 0 15px;
+  }
+
+  /* BOTTONI MENU E CONTATTI */
+  .bottone3,
+  .bottone4 {
+    font-size: 0.9em !important;
+    padding: 14px 30px !important;
+    width: 80%;
+    text-align: center;
+  }
+
+  /* MAPPA CONTATTI */
+  .mappa {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 90%;
+    margin: 30px auto;
+  }
+
+  .mappa iframe {
+    height: 220px;
+  }
+
+  /* MAPPA HOME */
+  .mappaHome {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .mappaHome iframe {
+    height: 220px;
+  }
+}

@@ -22,7 +22,7 @@
   <div class="hero">
 
     <h1 class="testo">"Wallah Kebab"</h1>
-    <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+    <button class="imageHome" onclick="window.location.href='index.php'"></button>
     <button class="imageHomeCentrale" onclick="window.location.href='login.php'"></button>
 
   </div>
@@ -99,7 +99,7 @@
   <div class="tenda" id="tenda">
     <button class="chiudi" onclick="toggleMenu()">✕</button>
     <nav>
-      <a href="schermataIniziale.php">Home</a>
+      <a href="index.php">Home</a>
       <a href="menu.php">Menu</a>
       <a href="contatti.php">Contatti</a>
       <a href="chisiamo.php">Chi siamo</a>

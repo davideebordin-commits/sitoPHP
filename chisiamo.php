@@ -14,7 +14,7 @@
     }
 
     .header {
-      background: #111;
+       background: #111;
       color: #fff;
       padding: 18px 25px 18px 120px;
       position: sticky;
@@ -92,7 +92,7 @@
 </head>
 <body>
 
-  <button class="imageHome" onclick="window.location.href='schermataIniziale.php'"></button>
+  <button class="imageHome" onclick="window.location.href='index.php'"></button>
 
   <div class="header">
     <h1>Chi Siamo</h1>
