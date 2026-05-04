@@ -57,6 +57,7 @@ try {
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="grafica.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
     <button class="imageHome" onclick="window.location.href='index.php'"></button>

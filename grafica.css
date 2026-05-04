@@ -1,12 +1,21 @@
-h1 {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+h1 {
   text-align: center;
   font-size: 150;
   font-style: italic;
 }
 
 h2 {
-
   text-align: center;
   font-size: 100;
   font-style: italic;
@@ -16,7 +25,6 @@ h3 {
   position: absolute;
   top: 0%;
   left: 30%;
-  ;
   font-size: 70;
   font-style: italic;
   color: white;
@@ -26,7 +34,7 @@ h4 {
   color: white;
   top: 20%;
   text-align: center;
-  font-size: 50;
+  font-size: 65px;
   font-style: italic;
 }
 
@@ -36,7 +44,6 @@ h5 {
   left: 55%;
   font-size: 30;
   font-style: Candara, serif;
-  ;
   color: white;
 }
 
@@ -44,7 +51,6 @@ h6 {
   position: absolute;
   top: 0%;
   left: 30%;
-  ;
   font-size: 70;
   font-style: italic;
   color: black;
@@ -52,7 +58,6 @@ h6 {
 
 button {
   align-items: center;
-
   background-color: black;
   color: white;
   font-size: 20px;
@@ -61,10 +66,8 @@ button {
   cursor: pointer;
 }
 
-
 .hero {
   position: relative;
-  /* prima immagine kebab */
   width: 100%;
   height: 100vh;
   background-image: url('interniKEBB22.jpg');
@@ -73,7 +76,6 @@ button {
 }
 
 .hero2 {
-  /* seconda immagine   */
   position: relative;
   width: 100%;
   height: 100vh;
@@ -82,8 +84,12 @@ button {
   background-position: center;
 }
 
+/* LA LOCATION — leggermente più piccolo su desktop */
+.hero2 h1 {
+  font-size: 3.5em !important;
+}
+
 .hero3 {
-  /* terza immagine   */
   position: relative;
   width: 100%;
   height: 100vh;
@@ -91,12 +97,11 @@ button {
   background-size: cover;
   background-position: center;
 }
- 
 
 .hero4 {
   position: relative;
   width: 100%;
-  height: 100vh; /* tutta l'altezza dello schermo */
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -108,7 +113,7 @@ button {
   transform: translate(-50%, -50%);
   min-width: 100%;
   min-height: 100%;
-  object-fit: cover; /* copre tutto senza deformarsi */
+  object-fit: cover;
   z-index: 0;
 }
 
@@ -118,11 +123,11 @@ button {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 0.5 = 50% scuro, puoi cambiarlo */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
-/* TESTO */
+/* TESTO VIDEO */
 .hero4-contenuto {
   position: absolute;
   top: 50%;
@@ -132,8 +137,6 @@ button {
   color: white;
   z-index: 2;
 }
-
-
 
 .hero4-contenuto p {
   font-size: 1.3rem;
@@ -149,17 +152,11 @@ button {
   font-size: 1.1rem;
 }
 
-
-
-
-
-
 .testo {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* centra perfettamente */
   color: white;
 }
 
@@ -168,28 +165,19 @@ button {
   top: 70%;
   left: 50%;
   transform: translate(-50%, -170%);
-  /* centra e alza il testo */
   color: white;
 }
 
-.imageRecensioni{
+.imageRecensioni {
   background-image: url('recensione1.jpeg');
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-
   position: fixed;
-  /* ← CAMBIATO DA absolute A fixed */
   top: 20px;
-  /* ← CAMBIATO per allinearsi bene */
   left: 43%;
-  /* ← CAMBIATO per allinearsi bene */
-
-  /* Dimensioni — adattale all'immagine */
   width: 180px;
   height: 180px;
-
-  /* Rimuove bordi e sfondo del bottone */
   border-radius: 5%;
   outline: none;
   padding: 0;
@@ -202,19 +190,11 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-
   position: fixed;
-  /* ← CAMBIATO DA absolute A fixed */
   top: 20px;
-  /* ← CAMBIATO per allinearsi bene */
   left: 25px;
-  /* ← CAMBIATO per allinearsi bene */
-
-  /* Dimensioni — adattale all'immagine */
   width: 80px;
   height: 80px;
-
-  /* Rimuove bordi e sfondo del bottone */
   border: none;
   outline: none;
   padding: 0;
@@ -227,19 +207,11 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-
   position: fixed;
-  /* ← CAMBIATO DA absolute A fixed */
   top: 20px;
-  /* ← CAMBIATO per allinearsi bene */
   left: 43%;
-  /* ← CAMBIATO per allinearsi bene */
-
-  /* Dimensioni — adattale all'immagine */
   width: 180px;
   height: 180px;
-
-  /* Rimuove bordi e sfondo del bottone */
   border: none;
   outline: none;
   padding: 0;
@@ -248,33 +220,23 @@ button {
 }
 
 .imageRettangoloHero3 {
-
   background-image: url('templateRettangolo.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-
   position: absolute;
-  /* ← CAMBIATO DA absolute A fixed */
   top: 20%;
-  /* ← CAMBIATO per allinearsi bene */
   left: 48%;
-  /* ← CAMBIATO per allinearsi bene */
-
-  /* Dimensioni — adattale all'immagine */
   width: 700px;
   height: 700px;
-
-  /* Rimuove bordi e sfondo del bottone */
   border: none;
   outline: none;
   padding: 0;
   cursor: pointer;
   z-index: 9999;
-
 }
 
-/* Hamburger */
+/* HAMBURGER */
 .hamburger {
   position: fixed;
   top: 20px;
@@ -300,7 +262,7 @@ button {
   border-radius: 3px;
 }
 
-/* Tenda */
+/* TENDA */
 .tenda {
   position: fixed;
   top: 0;
@@ -334,7 +296,7 @@ button {
   color: #ccc;
 }
 
-/* Bottone chiudi — override forzato */
+/* BOTTONE CHIUDI */
 .chiudi {
   position: absolute !important;
   top: 20px !important;
@@ -350,7 +312,7 @@ button {
   cursor: pointer !important;
 }
 
-/* Overlay */
+/* OVERLAY */
 .overlay {
   display: none;
   position: fixed;
@@ -373,59 +335,45 @@ button {
   margin-top: 20px;
 }
 
-
-/* BOTTONE ORDINA SU MENU.PHP  */
+/* BOTTONE ORDINA SU MENU.PHP */
 .bottone3 {
-
   display: block;
   margin: 30px auto;
-
   background-color: #111;
   color: #fff;
-
   font-family: Georgia, serif;
   font-size: 1.1em !important;
   letter-spacing: 2px;
   text-transform: uppercase;
-
   padding: 18px 60px !important;
   border: 2px solid #111;
   border-radius: 4px !important;
-
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 
 .bottone3:hover {
   background-color: #fff;
   color: #111;
 }
 
-
 /* BOTTONE TORNA ALLA HOME CONTATTI */
 .bottone4 {
-
   display: block;
   margin: 30px;
-
   background-color: #111;
   color: #fff;
-
   font-family: Georgia, serif;
   font-size: 1.1em !important;
   letter-spacing: 2px;
   text-transform: uppercase;
-
   padding: 18px 40px !important;
   border: 2px solid #111;
   border-radius: 4px !important;
-
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
   z-index: 1000;
 }
-
 
 .bottone4:hover {
   background-color: #fff;
@@ -470,10 +418,54 @@ button {
 }
 
 
-/* GESTIONE GRAFICA PER TELEFONO */
+/* ================================
+   GESTIONE GRAFICA PER TELEFONO
+   ================================ */
 @media (max-width: 430px) {
 
-  /* TITOLI */
+  /* Hero a tutto schermo senza bordi */
+  .hero,
+  .hero2,
+  .hero3,
+  .hero4 {
+    width: 100vw;
+    height: 100svh;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+  }
+
+ /* CORRETTO */
+h1.testo {
+  position: absolute;
+top: 20%;
+  font-size: 4rem !important;
+}
+  /* LA LOCATION — più piccola su mobile */
+  .hero2 h1 {
+
+    font-size: 2.21rem !important;
+  }
+
+  /* VIENI A TROVARCI — leggermente più grande su mobile */
+  .hero3 h3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: 1.6rem !important;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* CARNE FRESCA, SAPORI AUTENTICI — più grande su mobile */
+  h4 {
+    font-size: 1.8rem !important;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  /* TITOLI GENERICI */
   h1 {
     font-size: 2rem;
     padding: 0 10px;
@@ -491,12 +483,6 @@ button {
     font-size: 1.2rem;
     text-align: center;
     padding: 10px;
-  }
-
-  h4 {
-    font-size: 1rem;
-    text-align: center;
-    padding: 0 10px;
   }
 
   h5 {
@@ -526,19 +512,7 @@ button {
     margin: 0 auto;
   }
 
-  /* HERO IMMAGINI */
-  .hero,
-  .hero2,
-  .hero3 {
-    height: 100svh;
-    background-position: center center;
-  }
-
   /* HERO VIDEO */
-  .hero4 {
-    height: 100svh;
-  }
-
   .hero4-contenuto p {
     font-size: 1rem;
     padding: 0 20px;
@@ -566,7 +540,7 @@ button {
     height: 55px;
   }
 
-  /* BOTTONE CENTRALE (ordina qui / recensioni) */
+  /* BOTTONE CENTRALE */
   .imageHomeCentrale,
   .imageRecensioni {
     left: 50%;
@@ -576,15 +550,17 @@ button {
     top: 15px;
   }
 
-  /* RETTANGOLO HERO3 */
+  /* SPOSTA "ordina qui" a sinistra, lontano dall'hamburger */
+  .imageHomeCentrale {
+    left: 35%;
+    transform: none;
+    width: 110px;
+    height: 110px;
+  }
+
+  /* RETTANGOLO HERO3 — nascosto su mobile */
   .imageRettangoloHero3 {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 95%;
-    height: auto;
-    margin: 20px auto;
-    display: block;
+    display: none;
   }
 
   /* HAMBURGER */
