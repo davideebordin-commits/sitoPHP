@@ -17,10 +17,10 @@ $totale      = $_SESSION['totale'];
 $descrizione = $_SESSION['descrizione'];
 $note_ordine = $_SESSION['note_ordine'] ?? '';
 
-$host     = "localhost";
-$user     = "root";
-$password = "";
-$db       = "prova5";
+$host     = "sql108.infinityfree.com";
+$user     = "if0_41785966";
+$password = "DvM9xbqFLVzZ7y";
+$db       = "if0_41785966_wallah";
 $dsn      = "mysql:host=$host;dbname=$db;charset=utf8";
 $options  = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
