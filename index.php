@@ -27,7 +27,7 @@
 
   <div class="hero">
     
-<h1 class="testo" style="font-size: clamp(6rem, 5vw, 3rem); top: 18%;">"Wallah Kebab"</h1>
+<h1 class="testo" style="font-size: clamp(6rem, 5vw, 3rem); top: 25%;">"Wallah Kebab"</h1>
 
 <button class="imageHome" onclick="window.location.href='index.php'"></button>
 <button class="imageHomeCentrale" onclick="window.location.href='login.php'" style="left:50%; transform:translateX(-50%);"></button>
