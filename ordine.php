@@ -8,648 +8,751 @@ if (!isset($_SESSION['nomeutente'])) {
 
 $nomeutente = $_SESSION['nomeutente'];
 ?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Nuovo Ordine - Wallah Kebab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="grafica.css">
+<title>Nuovo Ordine - Wallah Kebab</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+<link rel="stylesheet" href="grafica.css">
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<style>
 
-    :root{
-      --nero:#111;
-      --bianco:#fff;
-      --grigio:#f5f5f3;
-      --bordo:#e0e0de;
-      --grigio2:#999;
-      --accent:#c0392b;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
 
-    body{
-      font-family:'DM Sans',sans-serif;
-      background:var(--grigio);
-      color:var(--nero);
-      min-height:100vh;
-      padding-bottom:180px;
-      -webkit-font-smoothing:antialiased;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    /* HEADER */
+:root{
+    --nero:#111;
+    --bianco:#fff;
+    --grigio:#f5f5f3;
+    --bordo:#e0e0de;
+    --grigio2:#888;
+    --accent:#c0392b;
+}
 
-    .header{
-      background:var(--nero);
-      color:var(--bianco);
-      padding:18px 60px 18px 70px;
-      display:flex;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
+body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--grigio);
+    color:var(--nero);
+    min-height:100vh;
+    padding-bottom:180px;
+}
 
-    .header h2{
-      font-family:'Playfair Display',serif;
-      font-size:1rem;
-      font-style:italic;
-      font-weight:400;
-      letter-spacing:1px;
-    }
+/* HEADER */
 
-    /* HOME BUTTON */
+.header{
+    background:var(--nero);
+    color:var(--bianco);
+    padding:18px 60px 18px 70px;
 
-    .imageHome{
-      background-image:url('kebabbazzo.png');
-      background-size:contain;
-      background-repeat:no-repeat;
-      background-color:transparent;
-      position:fixed;
-      top:14px;
-      left:15px;
-      width:42px;
-      height:42px;
-      border:none;
-      cursor:pointer;
-      z-index:9999;
-    }
+    display:flex;
+    align-items:center;
 
-    /* CONTENITORE */
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-    .menu-container{
-      max-width:560px;
-      margin:0 auto;
-      padding:16px;
-    }
+.header h2{
+    font-family:'Playfair Display',serif;
+    font-size:1rem;
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:1px;
+}
 
-    /* TITOLI */
+/* LOGO HOME */
 
-    .menu-section-title{
-      font-size:0.68rem;
-      font-weight:500;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:var(--grigio2);
-      border-bottom:1px solid var(--bordo);
-      padding-bottom:8px;
-      margin:24px 0 10px;
-    }
+.imageHome{
+    background-image:url('kebabbazzo.png');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-color:transparent;
 
-    /* CARD */
+    position:fixed;
+    top:14px;
+    left:15px;
 
-    .piatto-card{
-      background:var(--bianco);
-      border:1px solid var(--bordo);
-      border-radius:10px;
-      padding:14px;
-      margin-bottom:8px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      transition:0.2s;
-    }
+    width:42px;
+    height:42px;
 
-    .piatto-card.attivo{
-      border-color:var(--nero);
-      box-shadow:0 2px 12px rgba(0,0,0,0.1);
-    }
+    border:none;
+    cursor:pointer;
 
-    .piatto-id{
-      font-size:9px;
-      font-weight:500;
-      color:var(--grigio2);
-      background:var(--grigio);
-      border:1px solid var(--bordo);
-      border-radius:3px;
-      padding:2px 5px;
-      white-space:nowrap;
-    }
+    z-index:9999;
+}
 
-    .piatto-info{
-      flex:1;
-      min-width:0;
-    }
+/* CONTENITORE */
 
-    .nome{
-      font-weight:500;
-      font-size:0.9rem;
-      line-height:1.3;
-    }
+.menu-container{
+    max-width:560px;
+    margin:0 auto;
+    padding:16px;
+}
 
-    .desc{
-      font-size:0.75rem;
-      color:#777;
-      margin-top:2px;
-      line-height:1.3;
-    }
+/* TITOLI */
 
-    .prezzo{
-      font-weight:500;
-      white-space:nowrap;
-      font-size:0.9rem;
-    }
+.menu-section-title{
+    font-size:0.68rem;
+    font-weight:500;
+    letter-spacing:3px;
+    text-transform:uppercase;
 
-    /* QUANTITA */
+    color:var(--grigio2);
 
-    .qty-control{
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
+    border-bottom:1px solid var(--bordo);
 
-    .qty-btn{
-      width:34px;
-      height:34px;
-      border:2px solid var(--nero);
-      background:var(--bianco);
-      border-radius:50%;
-      font-size:1.1rem;
-      font-weight:bold;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:0.15s;
-    }
+    padding-bottom:8px;
+    margin:24px 0 10px;
+}
 
-    .qty-btn:hover{
-      background:var(--nero);
-      color:var(--bianco);
-    }
+/* CARD */
 
-    .qty-display{
-      width:22px;
-      text-align:center;
-      font-weight:600;
-    }
+.piatto-card{
+    background:var(--bianco);
 
-    /* CARRELLO */
+    border:1px solid var(--bordo);
+    border-radius:10px;
+
+    padding:14px;
+    margin-bottom:8px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    transition:0.2s;
+}
+
+.piatto-card.attivo{
+    border-color:var(--nero);
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.piatto-id{
+    font-size:9px;
+    font-weight:500;
+
+    color:var(--grigio2);
+
+    background:var(--grigio);
+
+    border:1px solid var(--bordo);
+    border-radius:3px;
+
+    padding:2px 5px;
+    white-space:nowrap;
+}
+
+.piatto-info{
+    flex:1;
+}
+
+.nome{
+    font-size:0.9rem;
+    font-weight:500;
+}
+
+.desc{
+    font-size:0.75rem;
+    color:#777;
+    margin-top:2px;
+    line-height:1.3;
+}
+
+.prezzo{
+    font-size:0.9rem;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+/* QUANTITA */
+
+.qty-control{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.qty-btn{
+    width:28px;
+    height:28px;
+
+    min-width:28px;
+    min-height:28px;
+
+    border:2px solid var(--nero);
+    background:var(--bianco);
+
+    border-radius:50%;
+
+    font-size:0.9rem;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+    line-height:1;
+
+    transition:0.15s;
+}
+
+.qty-btn:hover{
+    background:var(--nero);
+    color:var(--bianco);
+}
+
+.qty-display{
+    width:18px;
+    text-align:center;
+    font-weight:600;
+    font-size:0.9rem;
+}
+
+/* CARRELLO */
+
+.carrello-fisso{
+    position:fixed;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    background:var(--nero);
+    color:var(--bianco);
+
+    z-index:200;
+
+    padding:16px 20px 20px;
+
+    max-width:560px;
+    margin:0 auto;
+}
+
+@media (min-width:560px){
 
     .carrello-fisso{
-      position:fixed;
-      bottom:0;
-      left:0;
-      right:0;
-      background:var(--nero);
-      color:var(--bianco);
-      z-index:200;
-      padding:16px 20px 20px;
-      max-width:560px;
-      margin:0 auto;
-    }
-
-    @media (min-width:560px){
-      .carrello-fisso{
         left:50%;
         right:auto;
+
         transform:translateX(-50%);
+
         width:560px;
+
         border-radius:12px 12px 0 0;
-      }
     }
+}
 
-    .carrello-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:10px;
-      cursor:pointer;
-    }
+.carrello-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    .carrello-titolo{
-      font-size:0.68rem;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:#aaa;
-    }
+    margin-bottom:10px;
 
-    .carrello-toggle{
-      font-size:0.75rem;
-      color:#aaa;
-    }
+    cursor:pointer;
+}
 
-    .carrello-lista-wrap{
-      overflow:hidden;
-      max-height:0;
-      transition:max-height 0.3s ease;
-    }
+.carrello-titolo{
+    font-size:0.68rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
 
-    .carrello-lista-wrap.aperto{
-      max-height:300px;
-    }
+    color:#aaa;
+}
 
-    #lista-riepilogo{
-      list-style:none;
-      border-bottom:1px solid #333;
-      margin-bottom:10px;
-      padding-bottom:8px;
-    }
+.carrello-toggle{
+    font-size:0.75rem;
+    color:#aaa;
+}
 
-    #lista-riepilogo li{
-      display:flex;
-      justify-content:space-between;
-      padding:5px 0;
-      font-size:0.85rem;
-      border-bottom:1px solid #2a2a2a;
-    }
+/* LISTA */
 
-    .msg-vuoto{
-      color:#666;
-      font-style:italic;
-    }
+.carrello-lista-wrap{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height 0.3s ease;
+}
 
-    /* NOTE */
+.carrello-lista-wrap.aperto{
+    max-height:300px;
+}
 
-    .note-wrapper{
-      padding:10px 0 12px;
-    }
+#lista-riepilogo{
+    list-style:none;
 
-    .note-label{
-      display:block;
-      font-size:0.68rem;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:#aaa;
-      margin-bottom:6px;
-    }
+    border-bottom:1px solid #333;
 
-    .note-textarea{
-      width:100%;
-      background:#1a1a1a;
-      border:1px solid #444;
-      border-radius:6px;
-      color:#fff;
-      font-size:0.85rem;
-      padding:10px 12px;
-      resize:none;
-      height:60px;
-      outline:none;
-    }
+    margin-bottom:10px;
+    padding-bottom:8px;
+}
 
-    .note-counter{
-      text-align:right;
-      font-size:0.7rem;
-      color:#555;
-      margin-top:3px;
-    }
+#lista-riepilogo li{
+    display:flex;
+    justify-content:space-between;
 
-    /* FOOTER */
+    padding:5px 0;
 
-    .carrello-bottom{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-top:4px;
-    }
+    font-size:0.85rem;
 
-    .totale-label{
-      font-size:1rem;
-      font-weight:600;
-      white-space:nowrap;
-    }
+    border-bottom:1px solid #2a2a2a;
+}
 
-    .totale-label span:first-child{
-      font-size:0.75rem;
-      color:#aaa;
-      margin-right:4px;
-    }
+#lista-riepilogo li:last-child{
+    border-bottom:none;
+}
 
-    .bottone-conferma{
-      flex:1;
-      background:var(--accent);
-      color:var(--bianco);
-      font-size:0.9rem;
-      font-weight:500;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      padding:14px 10px;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      transition:0.2s;
-    }
+.msg-vuoto{
+    color:#666;
+    font-style:italic;
+}
 
-    .bottone-conferma:hover{
-      background:#a93226;
-    }
+/* NOTE */
 
-    .bottone-conferma:disabled{
-      background:#333;
-      color:#666;
-      cursor:not-allowed;
-    }
-  </style>
+.note-wrapper{
+    padding:10px 0 12px;
+}
+
+.note-label{
+    display:block;
+
+    font-size:0.68rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:#aaa;
+
+    margin-bottom:6px;
+}
+
+.note-textarea{
+    width:100%;
+
+    background:#1a1a1a;
+
+    border:1px solid #444;
+    border-radius:6px;
+
+    color:#fff;
+
+    padding:10px 12px;
+
+    font-size:0.85rem;
+
+    resize:none;
+
+    height:60px;
+
+    outline:none;
+}
+
+.note-counter{
+    text-align:right;
+
+    font-size:0.7rem;
+
+    color:#555;
+
+    margin-top:3px;
+}
+
+/* FOOTER */
+
+.carrello-bottom{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:4px;
+}
+
+.totale-label{
+    font-size:1rem;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.totale-label span:first-child{
+    font-size:0.75rem;
+    color:#aaa;
+    margin-right:4px;
+}
+
+.bottone-conferma{
+    flex:1;
+
+    background:var(--accent);
+    color:var(--bianco);
+
+    border:none;
+    border-radius:6px;
+
+    padding:14px 10px;
+
+    font-size:0.9rem;
+    font-weight:500;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.bottone-conferma:hover{
+    background:#a93226;
+}
+
+.bottone-conferma:disabled{
+    background:#333;
+    color:#666;
+    cursor:not-allowed;
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <button class="imageHome" onclick="window.location.href='index.php'"></button>
+<button class="imageHome" onclick="window.location.href='index.php'"></button>
 
-  <div class="header">
+<div class="header">
     <h2>Ordine — <?= htmlspecialchars($nomeutente) ?></h2>
-  </div>
+</div>
 
-  <div class="menu-container">
+<div class="menu-container">
 
-    <div class="menu-section-title">Kebab & Wrap</div>
+<?php
 
-    <?php
-    $menu = [
-      ["001","Kebab nel pane","Pita, carne mista, insalata, pomodoro, cipolla e salsa","6"],
-      ["002","Durum wrap","Pane yufka, carne, verdure grigliate e salsa piccante","7"],
-      ["003","Kebab box","Carne su riso basmati con insalata e salsa bianca","9"],
-      ["004","Lahmacun","Pizza turca sottile con carne speziata e limone","7"],
-      ["005","Pide con carne","Barca di pane con carne e formaggio","9"],
-      ["006","Pollo alla griglia","Petto marinato con spezie turche","10"],
-      ["007","Patatine fritte","Croccanti con salsa","3"],
-      ["008","Ayran","Yogurt turco salato","2"],
-      ["009","Baklava","Pasta sfoglia con pistacchi","4"],
-      ["010","Künefe","Pasta croccante con formaggio filante","6"]
-    ];
+$menu = [
 
-    foreach($menu as $item){
-      echo '
-      <div class="piatto-card" data-id="'.$item[0].'">
+["001","Kebab nel pane","Pita, carne mista, insalata, pomodoro e salsa","6"],
+["002","Durum wrap","Pane yufka, carne e salsa piccante","7"],
+["003","Kebab box","Carne su riso basmati","9"],
+["004","Lahmacun","Pizza turca con carne speziata","7"],
+["005","Pide con carne","Barca di pane con formaggio","9"],
+["006","Pollo alla griglia","Pollo speziato con patatine","10"],
+["007","Patatine fritte","Croccanti con salsa","3"],
+["008","Ayran","Yogurt turco salato","2"],
+["009","Baklava","Dolce turco al pistacchio","4"],
+["010","Künefe","Pasta croccante con formaggio","6"]
 
-        <span class="piatto-id">#'.$item[0].'</span>
+];
 
-        <div class="piatto-info">
-          <div class="nome">'.$item[1].'</div>
-          <div class="desc">'.$item[2].'</div>
-        </div>
+foreach($menu as $item){
 
-        <div class="prezzo">€ '.$item[3].'</div>
+echo '
 
-        <div class="qty-control">
-          <button class="qty-btn" onclick="cambia(this,-1)">−</button>
-          <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="cambia(this,1)">+</button>
-        </div>
+<div class="piatto-card" data-id="'.$item[0].'">
 
-      </div>';
-    }
-    ?>
+    <span class="piatto-id">#'.$item[0].'</span>
 
-  </div>
+    <div class="piatto-info">
 
-  <!-- CARRELLO -->
+        <div class="nome">'.$item[1].'</div>
 
-  <div class="carrello-fisso">
+        <div class="desc">'.$item[2].'</div>
+
+    </div>
+
+    <div class="prezzo">€ '.$item[3].'</div>
+
+    <div class="qty-control">
+
+        <button class="qty-btn" onclick="cambia(this,-1)">−</button>
+
+        <span class="qty-display">0</span>
+
+        <button class="qty-btn" onclick="cambia(this,1)">+</button>
+
+    </div>
+
+</div>
+
+';
+}
+
+?>
+
+</div>
+
+<!-- CARRELLO -->
+
+<div class="carrello-fisso">
 
     <div class="carrello-header" onclick="toggleCarrello()">
-      <span class="carrello-titolo">Il tuo ordine</span>
-      <span class="carrello-toggle" id="toggle-label">
-        ▲ vedi dettaglio
-      </span>
+
+        <span class="carrello-titolo">
+            Il tuo ordine
+        </span>
+
+        <span class="carrello-toggle" id="toggle-label">
+            ▲ vedi dettaglio
+        </span>
+
     </div>
 
     <div class="carrello-lista-wrap" id="carrello-lista">
 
-      <ul id="lista-riepilogo">
-        <li>
-          <span class="msg-vuoto">
-            Nessun articolo selezionato
-          </span>
-        </li>
-      </ul>
+        <ul id="lista-riepilogo">
 
-      <div class="note-wrapper">
+            <li>
+                <span class="msg-vuoto">
+                    Nessun articolo selezionato
+                </span>
+            </li>
 
-        <label class="note-label">
-          Note extra
-        </label>
+        </ul>
 
-        <textarea
-          id="note-extra"
-          class="note-textarea"
-          maxlength="300"
-          placeholder="Es: senza cipolla, extra salsa piccante..."
-        ></textarea>
+        <div class="note-wrapper">
 
-        <div class="note-counter">
-          <span id="note-count">0</span>/300
+            <label class="note-label">
+                Note extra
+            </label>
+
+            <textarea
+                id="note-extra"
+                class="note-textarea"
+                maxlength="300"
+                placeholder="Es: senza cipolla, extra salsa..."
+            ></textarea>
+
+            <div class="note-counter">
+
+                <span id="note-count">0</span>/300
+
+            </div>
+
         </div>
-
-      </div>
 
     </div>
 
     <div class="carrello-bottom">
 
-      <div class="totale-label">
-        <span>Totale</span>
-        <span id="totale">€ 0</span>
-      </div>
+        <div class="totale-label">
 
-      <button
-        class="bottone-conferma"
-        id="btn-conferma"
-        disabled
-        onclick="confermaOrdine()"
-      >
-        Conferma
-      </button>
+            <span>Totale</span>
+
+            <span id="totale">€ 0</span>
+
+        </div>
+
+        <button
+            class="bottone-conferma"
+            id="btn-conferma"
+            disabled
+            onclick="confermaOrdine()"
+        >
+            Conferma
+        </button>
 
     </div>
 
-  </div>
+</div>
 
-  <script>
+<script>
 
-    let carrelloAperto = false;
+let carrelloAperto = false;
 
-    function toggleCarrello(){
+function toggleCarrello(){
 
-      carrelloAperto = !carrelloAperto;
+    carrelloAperto = !carrelloAperto;
 
-      const wrap = document.getElementById('carrello-lista');
-      const label = document.getElementById('toggle-label');
+    const wrap = document.getElementById('carrello-lista');
 
-      wrap.classList.toggle('aperto', carrelloAperto);
+    const label = document.getElementById('toggle-label');
 
-      label.textContent =
+    wrap.classList.toggle('aperto', carrelloAperto);
+
+    label.textContent =
         carrelloAperto
         ? '▼ chiudi'
         : '▲ vedi dettaglio';
-    }
+}
 
-    function cambia(btn, delta){
+function cambia(btn, delta){
 
-      const card = btn.closest('.piatto-card');
+    const card = btn.closest('.piatto-card');
 
-      const display = card.querySelector('.qty-display');
+    const display = card.querySelector('.qty-display');
 
-      let qty = parseInt(display.textContent) + delta;
+    let qty = parseInt(display.textContent) + delta;
 
-      if(qty < 0) qty = 0;
+    if(qty < 0) qty = 0;
 
-      display.textContent = qty;
+    display.textContent = qty;
 
-      card.classList.toggle('attivo', qty > 0);
+    card.classList.toggle('attivo', qty > 0);
 
-      aggiornaRiepilogo();
-    }
+    aggiornaRiepilogo();
+}
 
-    function aggiornaRiepilogo(){
+function aggiornaRiepilogo(){
 
-      const cards = document.querySelectorAll('.piatto-card');
+    const cards = document.querySelectorAll('.piatto-card');
 
-      const lista = document.getElementById('lista-riepilogo');
+    const lista = document.getElementById('lista-riepilogo');
 
-      const totaleEl = document.getElementById('totale');
+    const totaleEl = document.getElementById('totale');
 
-      const btnConferma = document.getElementById('btn-conferma');
+    const btnConferma = document.getElementById('btn-conferma');
 
-      lista.innerHTML = '';
+    lista.innerHTML = '';
 
-      let totale = 0;
-      let haVoci = false;
+    let totale = 0;
 
-      cards.forEach(card => {
+    let haVoci = false;
+
+    cards.forEach(card => {
 
         const qty = parseInt(
-          card.querySelector('.qty-display').textContent
+            card.querySelector('.qty-display').textContent
         );
 
         if(qty > 0){
 
-          haVoci = true;
+            haVoci = true;
 
-          const nome =
-            card.querySelector('.nome').textContent;
+            const nome =
+                card.querySelector('.nome').textContent;
 
-          const prezzo =
-            parseFloat(
-              card.querySelector('.prezzo')
-              .textContent
-              .replace('€','')
-              .trim()
-            );
+            const prezzo =
+                parseFloat(
+                    card.querySelector('.prezzo')
+                    .textContent
+                    .replace('€','')
+                    .trim()
+                );
 
-          const sub = prezzo * qty;
+            const sub = prezzo * qty;
 
-          totale += sub;
+            totale += sub;
 
-          const li = document.createElement('li');
+            const li = document.createElement('li');
 
-          li.innerHTML =
-            `<span>${qty}× ${nome}</span>
-             <span>€ ${sub.toFixed(0)}</span>`;
+            li.innerHTML =
+                `<span>${qty}× ${nome}</span>
+                 <span>€ ${sub.toFixed(0)}</span>`;
 
-          lista.appendChild(li);
+            lista.appendChild(li);
         }
-      });
-
-      if(!haVoci){
-
-        lista.innerHTML =
-          '<li><span class="msg-vuoto">Nessun articolo selezionato</span></li>';
-      }
-
-      totaleEl.textContent = '€ ' + totale.toFixed(0);
-
-      btnConferma.disabled = !haVoci;
-
-      if(haVoci && !carrelloAperto){
-        toggleCarrello();
-      }
-    }
-
-    /* NOTE */
-
-    const noteEl = document.getElementById('note-extra');
-
-    const noteCount = document.getElementById('note-count');
-
-    noteEl.addEventListener('input', () => {
-      noteCount.textContent = noteEl.value.length;
     });
 
-    /* INVIO */
+    if(!haVoci){
 
-    function confermaOrdine(){
+        lista.innerHTML =
+            '<li><span class="msg-vuoto">Nessun articolo selezionato</span></li>';
+    }
 
-      const note =
+    totaleEl.textContent = '€ ' + totale.toFixed(0);
+
+    btnConferma.disabled = !haVoci;
+
+    if(haVoci && !carrelloAperto){
+        toggleCarrello();
+    }
+}
+
+/* NOTE */
+
+const noteEl = document.getElementById('note-extra');
+
+const noteCount = document.getElementById('note-count');
+
+noteEl.addEventListener('input', () => {
+
+    noteCount.textContent = noteEl.value.length;
+});
+
+/* ORDINE */
+
+function confermaOrdine(){
+
+    const note =
         document.getElementById('note-extra')
         .value
         .trim();
 
-      const dati = [];
+    const dati = [];
 
-      document.querySelectorAll('.piatto-card').forEach(card => {
+    document.querySelectorAll('.piatto-card').forEach(card => {
 
         const qty = parseInt(
-          card.querySelector('.qty-display').textContent
+            card.querySelector('.qty-display').textContent
         );
 
         if(qty > 0){
 
-          dati.push({
+            dati.push({
 
-            id: card.dataset.id,
+                id:card.dataset.id,
 
-            nome:
-              card.querySelector('.nome').textContent,
+                nome:
+                    card.querySelector('.nome').textContent,
 
-            prezzo:
-              parseFloat(
-                card.querySelector('.prezzo')
-                .textContent
-                .replace('€','')
-                .trim()
-              ),
+                prezzo:
+                    parseFloat(
+                        card.querySelector('.prezzo')
+                        .textContent
+                        .replace('€','')
+                        .trim()
+                    ),
 
-            qty: qty
-          });
+                qty:qty
+            });
         }
-      });
+    });
 
-      fetch('salva_ordine.php', {
+    fetch('salva_ordine.php',{
 
         method:'POST',
 
         headers:{
-          'Content-Type':'application/json'
+            'Content-Type':'application/json'
         },
 
         body:JSON.stringify({
-          voci:dati,
-          note:note
+            voci:dati,
+            note:note
         })
+    })
 
-      })
-      .then(res => res.json())
+    .then(res => res.json())
 
-      .then(data => {
+    .then(data => {
 
         if(data.ok){
 
-          window.location.href = 'pagamento.php';
+            window.location.href = 'pagamento.php';
 
         }else{
 
-          alert(
-            'Errore nel salvataggio ordine'
-          );
+            alert('Errore nel salvataggio ordine');
         }
-      })
+    })
 
-      .catch(() => {
+    .catch(() => {
 
         alert('Errore di rete');
-      });
-    }
+    });
+}
 
-  </script>
+</script>
 
 </body>
 </html>
