@@ -439,8 +439,8 @@ button {
  /* CORRETTO */
 h1.testo {
   position: absolute;
-top: 20%;
-  font-size: 4rem !important;
+  top: 20%;
+  font-size: 2rem !important;
 }
   /* LA LOCATION — più piccola su mobile */
   .hero2 h1 {
@@ -551,12 +551,13 @@ top: 20%;
   }
 
   /* SPOSTA "ordina qui" a sinistra, lontano dall'hamburger */
-  .imageHomeCentrale {
-    left: 35%;
-    transform: none;
-    width: 110px;
-    height: 110px;
-  }
+.imageHomeCentrale {
+ 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+}
 
   /* RETTANGOLO HERO3 — nascosto su mobile */
   .imageRettangoloHero3 {
