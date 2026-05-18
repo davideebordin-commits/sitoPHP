@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="it">
-<link rel="stylesheet" href="grafica.css">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chi Siamo - Wallah Kebab</title>
+  <link rel="stylesheet" href="grafica.css">
   <style>
-    body {
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
       font-family: Georgia, serif;
       background: #f7f5f0;
       color: #222;
-      margin: 0;
       padding-bottom: 60px;
     }
 
     .header {
-       background: #111;
+      background: #111;
       color: #fff;
       padding: 18px 25px 18px 120px;
       position: sticky;
@@ -23,6 +32,7 @@
     }
 
     .header h1 {
+      margin: 0;
       font-size: 1.3em;
       font-style: italic;
       letter-spacing: 1px;
@@ -61,14 +71,14 @@
 
     .info-griglia {
       display: flex;
-      gap: 30px;
+      gap: 20px;
       flex-wrap: wrap;
       margin-top: 30px;
     }
 
     .info-box {
       flex: 1;
-      min-width: 180px;
+      min-width: 140px;
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 6px;
@@ -88,6 +98,65 @@
       font-weight: bold;
       color: #111;
     }
+
+    /* ================================
+       MOBILE
+    ================================ */
+    @media (max-width: 600px) {
+
+      html, body {
+        padding-bottom: 40px;
+      }
+
+      /* HEADER — spazio a sinistra per il logo imageHome */
+      .header {
+        padding: 14px 70px 14px 75px;
+      }
+
+      .header h1 {
+        font-size: 1.15em;
+      }
+
+      /* CONTENUTO — padding-top per non finire sotto il logo fisso */
+      .contenuto {
+        margin: 0;
+        padding: 70px 20px 0 20px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .contenuto h2 {
+        font-size: 1.5em;
+        margin-bottom: 18px;
+      }
+
+      .contenuto p {
+        font-size: 1em;
+        line-height: 1.75;
+      }
+
+      /* BOX IN COLONNA */
+      .info-griglia {
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .info-box {
+        width: 100%;
+        min-width: unset;
+        padding: 16px;
+      }
+
+      .info-box .etichetta {
+        font-size: 0.8em;
+      }
+
+      .info-box .valore {
+        font-size: 1.05em;
+      }
+    }
+
   </style>
 </head>
 <body>
