@@ -1,24 +1,9 @@
 <?php
-/* ============================================================
-   WALLAH KEBAB — PAGINA RECENSIONI
-   PRIMA DELL'USO crea il database:
-
-   CREATE DATABASE IF NOT EXISTS wallah_kebab CHARACTER SET utf8mb4;
-   USE wallah_kebab;
-   CREATE TABLE IF NOT EXISTS recensioni (
-     id INT AUTO_INCREMENT PRIMARY KEY,
-     nome VARCHAR(80) NOT NULL,
-     stelle TINYINT NOT NULL,
-     commento TEXT NOT NULL,
-     creato_il DATETIME DEFAULT CURRENT_TIMESTAMP
-   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-   ============================================================ */
-
-$DB_HOST = 'mysqlkebab-wallahkebab.f.aivencloud.com';
-$DB_PORT = '11837';
+$DB_HOST = 'kodama.proxy.rlwy.net';
+$DB_PORT = '54895';
 $DB_NAME = 'prova5';
-$DB_USER = 'avnadmin';
-$DB_PASS = 'AVNS_L96Vz0Si_vPBARn006w';
+$DB_USER = 'root';
+$DB_PASS = 'MtOUjKrWVuKQkgLkHuClTXqRbUEfTaJf';
 
 $errore = '';
 $successo = '';
@@ -29,7 +14,6 @@ try {
         $DB_USER, $DB_PASS,
         [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
         ]
     );
 } catch (PDOException $e) {
@@ -88,7 +72,6 @@ function stelle_html($n, $size = 18) {
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="grafica.css">
   <style>
-    /* ----- STILI SPECIFICI PAGINA RECENSIONI ----- */
     body {
       background-image:
         radial-gradient(1200px 600px at 80% -10%, rgba(245,158,11,0.10), transparent 60%),
@@ -261,13 +244,10 @@ function stelle_html($n, $size = 18) {
 </head>
 <body>
 
-  <!-- NAV (identica a index.php) -->
   <button class="imageHome" onclick="window.location.href='index.php'" aria-label="Home"></button>
 
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
 
   <aside class="tenda" id="tenda">
@@ -275,7 +255,6 @@ function stelle_html($n, $size = 18) {
       <span class="eyebrow">Menu</span>
       <h3>Esplora<br>il locale</h3>
     </div>
-
     <nav>
       <a href="index.php">Home</a>
       <a href="menu.php">Menu</a>
@@ -284,18 +263,15 @@ function stelle_html($n, $size = 18) {
       <a href="contatti.php">Contatti</a>
       <a href="login.php">Ordina ora</a>
     </nav>
-
     <div class="tenda-footer">&copy; 2026 Wallah Kebab</div>
   </aside>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-  <!-- HERO -->
   <section class="hero-rec">
     <span class="eyebrow">Le voci dei nostri clienti</span>
     <h1>Cosa dicono di <span class="accent">noi</span></h1>
     <p>Ogni kebab che serviamo racconta una storia. Leggi le recensioni di chi ci ha già provato — e lasciaci la tua.</p>
-
     <div class="stats">
       <div class="stat-card">
         <div class="num"><?= $media ?> <span style="font-size:1rem">⭐</span></div>
@@ -325,7 +301,6 @@ function stelle_html($n, $size = 18) {
           <label for="nome">Il tuo nome</label>
           <input type="text" id="nome" name="nome" maxlength="80" placeholder="Es. Marco R." required>
         </div>
-
         <div class="field">
           <label>Il tuo voto</label>
           <div class="star-input">
@@ -336,20 +311,17 @@ function stelle_html($n, $size = 18) {
             <input type="radio" id="s1" name="stelle" value="1"><label for="s1">★</label>
           </div>
         </div>
-
         <div class="field">
           <label for="commento">La tua esperienza</label>
           <textarea id="commento" name="commento" maxlength="1000" placeholder="Raccontaci com'è andata..." required oninput="document.getElementById('cnt').textContent = this.value.length"></textarea>
           <div class="counter"><span id="cnt">0</span> / 1000</div>
         </div>
-
         <button type="submit" class="submit-btn">Pubblica recensione</button>
       </form>
     </aside>
 
     <section class="lista">
       <h2>Le ultime recensioni</h2>
-
       <?php if ($totale === 0): ?>
         <div class="vuoto">Ancora nessuna recensione. Sii il primo a lasciarne una!</div>
       <?php else: ?>

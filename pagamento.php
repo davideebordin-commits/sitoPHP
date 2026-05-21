@@ -17,16 +17,15 @@ $totale      = $_SESSION['totale'];
 $descrizione = $_SESSION['descrizione'];
 $note_ordine = $_SESSION['note_ordine'] ?? '';
 
-$host     = "mysqlkebab-wallahkebab.f.aivencloud.com";
-$port     = "11837";
-$user     = "avnadmin";
-$password = "AVNS_L96Vz0Si_vPBARn006w";
+$host     = "kodama.proxy.rlwy.net";
+$port     = "54895";
+$user     = "root";
+$password = "MtOUjKrWVuKQkgLkHuClTXqRbUEfTaJf";
 $db       = "prova5";
 $dsn      = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
 $options  = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 ];
 
 $errore        = "";
