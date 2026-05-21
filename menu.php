@@ -1,5 +1,4 @@
-Tutto il resto del menu è rimasto identico.
-
+ 
 <!DOCTYPE html>
 <html lang="it">
 <head>
