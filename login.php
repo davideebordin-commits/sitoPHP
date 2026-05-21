@@ -56,152 +56,294 @@ try {
 }
 ?>
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="grafica.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<html lang="it">
 <head>
-    <button class="imageHome" onclick="window.location.href='index.php'"></button>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accedi · Wallah Kebab</title>
+    <link rel="icon" type="image/png" href="kebabbazzo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="grafica.css">
 
     <style>
-        body {
+        :root {
+            --bg: #0f0d0b;
+            --bg-soft: #161310;
+            --card: #1c1815;
+            --line: rgba(255, 255, 255, 0.08);
+            --text: #f4ece1;
+            --muted: #b9ad9c;
+            --accent: #d4a056;
+            --accent-strong: #e7b46a;
+        }
+
+        body.login-page {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(1200px 600px at 80% -10%, rgba(212, 160, 86, 0.18), transparent 60%),
+                radial-gradient(900px 500px at -10% 110%, rgba(212, 160, 86, 0.10), transparent 60%),
+                var(--bg);
+            color: var(--text);
+            font-family: 'Manrope', system-ui, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        form {
-            padding: 40px 50px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 320px;
-        }
-
-        .titoletto {
-            position: static;
-            font-size: 1.3em;
-            margin-bottom: 30px;
-        }
-
-        .scelta-btn {
-            display: block;
-            width: 100%;
-            margin: 12px 0;
-            background-color: #111;
-            color: #fff;
-            font-family: Georgia, serif;
-            font-size: 1.1em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 16px 0;
-            border: 2px solid #111;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .scelta-btn:hover {
-            background-color: #fff;
-            color: #111;
-        }
-
-        #step-credenziali {
-            display: none;
-        }
-
-        #step-credenziali label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-family: Georgia, serif;
-        }
-
-        #step-credenziali input[type="text"],
-        #step-credenziali input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
+            padding: 100px 24px 60px;
             box-sizing: border-box;
         }
 
+        .login-card {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)), var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 56px 48px 44px;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            text-align: left;
+        }
+
+        .login-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            pointer-events: none;
+            background: radial-gradient(600px 200px at 50% -20%, rgba(212, 160, 86, 0.18), transparent 70%);
+            opacity: 0.9;
+        }
+
+        .login-card > * { position: relative; }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            line-height: 1.1;
+            margin: 0 0 14px;
+            color: var(--text);
+        }
+
+        .login-title .accent { color: var(--accent); }
+
+        .login-sub {
+            font-size: 0.98rem;
+            color: var(--muted);
+            margin: 0 0 34px;
+            line-height: 1.55;
+        }
+
+        .scelta-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .cta-primary,
+        .cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 22px;
+            border-radius: 999px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: #1a140c;
+            box-shadow: 0 12px 30px rgba(212, 160, 86, 0.28);
+        }
+        .cta-primary:hover {
+            background: var(--accent-strong);
+            transform: translateY(-1px);
+        }
+
+        .cta-ghost {
+            background: transparent;
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .cta-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        #step-credenziali { display: none; }
+
+        .field { margin-bottom: 18px; }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .field input[type="text"],
+        .field input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #1f1a15;
+            box-shadow: 0 0 0 4px rgba(212, 160, 86, 0.15);
+        }
+
+        .field input::placeholder { color: #6b6258; }
+
+        .submit-row { margin-top: 26px; }
+
         .btn-indietro {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
             background: transparent;
             border: none;
-            color: #666;
-            font-size: 0.9em;
+            color: var(--muted);
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.88rem;
+            letter-spacing: 0.05em;
             cursor: pointer;
-            margin-top: 10px;
-            text-decoration: underline;
-            padding: 0;
-            width: auto;
-            height: auto;
-            border-radius: 0;
+            padding: 6px 0;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
-
         .btn-indietro:hover {
-            color: #111;
+            color: var(--accent);
+            transform: translateX(-2px);
         }
 
-        #etichetta-azione {
-            font-family: Georgia, serif;
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 20px;
+        .etichetta-azione {
+            font-family: 'Playfair Display', Georgia, serif;
             font-style: italic;
+            font-size: 1rem;
+            color: var(--muted);
+            margin: 0 0 26px;
         }
 
+        .messaggio {
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 22px;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            border: 1px solid transparent;
+        }
         .messaggio-errore {
-            color: red;
-            font-family: Georgia, serif;
-            text-align: center;
-            margin-bottom: 15px;
+            background: rgba(255, 107, 107, 0.08);
+            border-color: rgba(255, 107, 107, 0.35);
+            color: #ffb3b3;
+        }
+        .messaggio-successo {
+            background: rgba(123, 211, 137, 0.08);
+            border-color: rgba(123, 211, 137, 0.35);
+            color: #b8eac1;
         }
 
-        .messaggio-successo {
-            color: green;
-            font-family: Georgia, serif;
-            text-align: center;
-            margin-bottom: 15px;
+        .imageHome {
+            position: fixed;
+            top: 22px;
+            left: 22px;
+            z-index: 10;
+        }
+
+        @media (max-width: 520px) {
+            .login-card { padding: 44px 26px 32px; border-radius: 14px; }
+            body.login-page { padding: 90px 16px 40px; }
         }
     </style>
 </head>
 
-<body>
-    <form method="POST" action="">
+<body class="login-page">
+
+    <button class="imageHome" onclick="window.location.href='index.php'" aria-label="Home"></button>
+
+    <form method="POST" action="" class="login-card" autocomplete="off">
 
         <?php if ($errore): ?>
-            <p class="messaggio-errore"><?= htmlspecialchars($errore) ?></p>
+            <p class="messaggio messaggio-errore"><?= htmlspecialchars($errore) ?></p>
         <?php endif; ?>
         <?php if ($successo): ?>
-            <p class="messaggio-successo"><?= htmlspecialchars($successo) ?></p>
+            <p class="messaggio messaggio-successo"><?= htmlspecialchars($successo) ?></p>
         <?php endif; ?>
 
         <div id="step-scelta">
-            <h6 class="titoletto">Accedi o Registrati per ordinare</h6>
-            <button type="button" class="scelta-btn" onclick="scegli('Accedi')">Accedi</button>
-            <button type="button" class="scelta-btn" onclick="scegli('Registrati')">Registrati</button>
+            <span class="eyebrow">Area riservata</span>
+            <h1 class="login-title">Accedi o <span class="accent">registrati</span></h1>
+            <p class="login-sub">Entra nel tuo account per ordinare il tuo kebab preferito, oppure crea un nuovo profilo in pochi secondi.</p>
+
+            <div class="scelta-stack">
+                <button type="button" class="cta-primary" onclick="scegli('Accedi')">Accedi</button>
+                <button type="button" class="cta-ghost"  onclick="scegli('Registrati')">Registrati</button>
+            </div>
         </div>
 
         <div id="step-credenziali">
-            <h3 class="titoletto" id="titolo-step2">Accedi</h3>
-            <p id="etichetta-azione"></p>
+            <span class="eyebrow">Wallah Kebab</span>
+            <h1 class="login-title" id="titolo-step2"><span class="accent">Accedi</span></h1>
+            <p class="etichetta-azione" id="etichetta-azione"></p>
 
-            <label for="nomeutente">Nome Utente:</label>
-            <input type="text" id="nomeutente" name="nomeutente">
+            <div class="field">
+                <label for="nomeutente">Nome utente</label>
+                <input type="text" id="nomeutente" name="nomeutente" placeholder="Es. mario.rossi">
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••">
+            </div>
 
             <input type="hidden" id="azione-hidden" name="azione" value="">
 
-            <input type="submit" class="scelta-btn" value="INVIO">
+            <div class="submit-row">
+                <input type="submit" class="cta-primary" value="Conferma">
+            </div>
+
             <button type="button" class="btn-indietro" onclick="torna()">← Torna indietro</button>
         </div>
 
@@ -219,11 +361,14 @@ try {
             document.getElementById('step-scelta').style.display = 'none';
             document.getElementById('step-credenziali').style.display = 'block';
             document.getElementById('azione-hidden').value = azione;
-            document.getElementById('titolo-step2').textContent = azione;
+
+            var titolo = document.getElementById('titolo-step2');
+            titolo.innerHTML = '<span class="accent">' + azione + '</span>';
+
             document.getElementById('etichetta-azione').textContent =
-                azione === 'Accedi' ?
-                'Inserisci le tue credenziali per accedere.' :
-                'Scegli un nome utente e una password per registrarti.';
+                azione === 'Accedi'
+                    ? 'Inserisci le tue credenziali per accedere.'
+                    : 'Scegli un nome utente e una password per registrarti.';
         }
 
         function torna() {
