@@ -1,235 +1,141 @@
-<?php
-session_start();
-
-$host     = "kodama.proxy.rlwy.net";
-$port     = "54895";
-$user     = "root";
-$password = "MtOUjKrWVuKQkgLkHuClTXqRbUEfTaJf";
-$db       = "prova5";
-
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-$errore  = "";
-$successo = "";
-
-try {
-    $pdo = new PDO($dsn, $user, $password, $options);
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nome  = $_POST['nomeutente'];
-        $passw = $_POST['password'];
-
-        if ($_POST['azione'] === 'Accedi') {
-            $sql  = "SELECT * FROM utente WHERE nome = :nome AND password = :passw";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':nome',  $nome,  PDO::PARAM_STR);
-            $stmt->bindParam(':passw', $passw, PDO::PARAM_STR);
-            $stmt->execute();
-            $utente = $stmt->fetch();
-
-            if ($utente) {
-                $_SESSION['nomeutente'] = $utente['nome'];
-                header("Location: ordine.php");
-                exit;
-            } else {
-                $errore = "Nome utente o password errati!";
-            }
-        } elseif ($_POST['azione'] === 'Registrati') {
-            try {
-                $sql  = "INSERT INTO utente (nome, password) VALUES (:nome, :passw)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':nome',  $nome,  PDO::PARAM_STR);
-                $stmt->bindParam(':passw', $passw, PDO::PARAM_STR);
-                $stmt->execute();
-                $successo = "Registrazione avvenuta correttamente!";
-            } catch (PDOException $e) {
-                $errore = "QUESTO NOME UTENTE È GIÀ REGISTRATO! INSERISCI UN NOME UTENTE DIVERSO!";
-            }
-        }
-    }
-} catch (PDOException $e) {
-    $errore = "Errore di connessione: " . $e->getMessage();
-}
-?>
+<?php ?>
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="grafica.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<html lang="it">
 <head>
-    <button class="imageHome" onclick="window.location.href='index.php'"></button>
-
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        form {
-            padding: 40px 50px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 320px;
-        }
-
-        .titoletto {
-            position: static;
-            font-size: 1.3em;
-            margin-bottom: 30px;
-        }
-
-        .scelta-btn {
-            display: block;
-            width: 100%;
-            margin: 12px 0;
-            background-color: #111;
-            color: #fff;
-            font-family: Georgia, serif;
-            font-size: 1.1em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 16px 0;
-            border: 2px solid #111;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .scelta-btn:hover {
-            background-color: #fff;
-            color: #111;
-        }
-
-        #step-credenziali {
-            display: none;
-        }
-
-        #step-credenziali label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-family: Georgia, serif;
-        }
-
-        #step-credenziali input[type="text"],
-        #step-credenziali input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-            box-sizing: border-box;
-        }
-
-        .btn-indietro {
-            background: transparent;
-            border: none;
-            color: #666;
-            font-size: 0.9em;
-            cursor: pointer;
-            margin-top: 10px;
-            text-decoration: underline;
-            padding: 0;
-            width: auto;
-            height: auto;
-            border-radius: 0;
-        }
-
-        .btn-indietro:hover {
-            color: #111;
-        }
-
-        #etichetta-azione {
-            font-family: Georgia, serif;
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .messaggio-errore {
-            color: red;
-            font-family: Georgia, serif;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .messaggio-successo {
-            color: green;
-            font-family: Georgia, serif;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallah Kebab</title>
+  <link rel="icon" type="image/png" href="kebabbazzo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="grafica.css">
 </head>
-
 <body>
-    <form method="POST" action="">
 
-        <?php if ($errore): ?>
-            <p class="messaggio-errore"><?= htmlspecialchars($errore) ?></p>
-        <?php endif; ?>
-        <?php if ($successo): ?>
-            <p class="messaggio-successo"><?= htmlspecialchars($successo) ?></p>
-        <?php endif; ?>
+  <!-- NAV -->
+  <button class="imageHome" onclick="window.location.href='index.php'" aria-label="Home"></button>
 
-        <div id="step-scelta">
-            <h6 class="titoletto">Accedi o Registrati per ordinare</h6>
-            <button type="button" class="scelta-btn" onclick="scegli('Accedi')">Accedi</button>
-            <button type="button" class="scelta-btn" onclick="scegli('Registrati')">Registrati</button>
-        </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-        <div id="step-credenziali">
-            <h3 class="titoletto" id="titolo-step2">Accedi</h3>
-            <p id="etichetta-azione"></p>
+  <aside class="tenda" id="tenda">
+    <div class="tenda-header">
+      <span class="eyebrow">Menu</span>
+      <h3>Esplora<br>il locale</h3>
+    </div>
 
-            <label for="nomeutente">Nome Utente:</label>
-            <input type="text" id="nomeutente" name="nomeutente">
+    <nav>
+      <a href="index.php">Home</a>
+      <a href="menu.php">Menu</a>
+      <a href="recensioni.php">Recensioni</a>
+      <a href="chisiamo.php">Chi siamo</a>
+      <a href="contatti.php">Contatti</a>
+      <a href="login.php">Ordina ora</a>
+    </nav>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+    <div class="tenda-footer">&copy; 2026 Wallah Kebab</div>
+  </aside>
 
-            <input type="hidden" id="azione-hidden" name="azione" value="">
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-            <input type="submit" class="scelta-btn" value="INVIO">
-            <button type="button" class="btn-indietro" onclick="torna()">← Torna indietro</button>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Castelfranco Veneto · Dal 2026</span>
+      <h1>"<span class="accent">Wallah</span> Kebab"</h1>
+      <p class="sub">Carne fresca tagliata al momento, pane caldo, sapori autentici del Medio Oriente. La tradizione che incontra il gusto.</p>
+      <div class="cta-row">
+        <a href="login.php" class="cta-primary">Ordina ora</a>
+        <a href="menu.php" class="cta-ghost">Vedi il menu</a>
+      </div>
+    </div>
+  </section>
 
-    </form>
+  <!-- LA LOCATION -->
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Il nostro spazio</span>
+      <h2>La <span class="accent">location</span></h2>
+      <p>Un ambiente accogliente nel cuore di Castelfranco, dove ogni cliente è di casa.</p>
+    </div>
 
-    <script>
-        <?php if ($errore || $successo): ?>
-            document.addEventListener('DOMContentLoaded', function() {
-                var azione = "<?= htmlspecialchars($_POST['azione'] ?? '') ?>";
-                if (azione) scegli(azione);
-            });
-        <?php endif; ?>
+    <div class="location-grid">
+      <div class="location-img">
+        <div class="bg"></div>
+        <span class="tag">Interno locale</span>
+      </div>
+      <div class="location-info">
+        <h3>Dove ci trovi</h3>
+        <p>Ti aspettiamo per pranzo, cena e take-away. Aperto 7 giorni su 7.</p>
+        <ul class="info-list">
+          <li>
+            <div class="icon">📍</div>
+            <div>
+              <div class="lbl">Indirizzo</div>
+              <div class="val">Via dei Carpani, Castelfranco Veneto (TV)</div>
+            </div>
+          </li>
+          <li>
+            <div class="icon">🕒</div>
+            <div>
+              <div class="lbl">Orari</div>
+              <div class="val">11:00 — 23:00 · Tutti i giorni</div>
+            </div>
+          </li>
+          <li>
+            <div class="icon">📞</div>
+            <div>
+              <div class="lbl">Prenotazioni</div>
+              <div class="val">Chiamaci o ordina online</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        function scegli(azione) {
-            document.getElementById('step-scelta').style.display = 'none';
-            document.getElementById('step-credenziali').style.display = 'block';
-            document.getElementById('azione-hidden').value = azione;
-            document.getElementById('titolo-step2').textContent = azione;
-            document.getElementById('etichetta-azione').textContent =
-                azione === 'Accedi' ?
-                'Inserisci le tue credenziali per accedere.' :
-                'Scegli un nome utente e una password per registrarti.';
-        }
+  <!-- MAPPA -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-head">
+      <span class="eyebrow">Come arrivare</span>
+      <h2>Vieni a <span class="accent">trovarci</span></h2>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789!2d11.9265!3d45.6732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4778116e4e4e4e4e%3A0x0!2sVia+dei+Carpani%2C+Castelfranco+Veneto%2C+TV!5e0!3m2!1sit!2sit!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
 
-        function torna() {
-            document.getElementById('step-credenziali').style.display = 'none';
-            document.getElementById('step-scelta').style.display = 'block';
-        }
-    </script>
+  <!-- VIDEO -->
+  <section class="hero4">
+    <video autoplay muted loop playsinline class="hero4-video">
+      <source src="video/kebb.mp4" type="video/mp4">
+    </video>
+    <div class="hero4-overlay"></div>
+    <div class="hero4-contenuto">
+      <h4>Carne fresca, <span class="accent">sapori autentici</span></h4>
+      <p>Selezioniamo ogni giorno le migliori materie prime per offrirti un kebab che ricorderai.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Wallah Kebab. Tutti i diritti riservati.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('tenda').classList.toggle('aperta');
+      document.getElementById('overlay').classList.toggle('attivo');
+      document.getElementById('hamburger').classList.toggle('aperto');
+    }
+  </script>
 </body>
 </html>

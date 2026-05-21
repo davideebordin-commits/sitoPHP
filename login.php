@@ -1,17 +1,16 @@
 <?php
-session_start(); // ← PRIMA DI TUTTO
+session_start();
 
-$host     = "mysqlkebab-wallahkebab.f.aivencloud.com";
-$port     = "11837";
-$user     = "avnadmin";
-$password = "AVNS_L96Vz0Si_vPBARn006w";
+$host     = "kodama.proxy.rlwy.net";
+$port     = "54895";
+$user     = "root";
+$password = "MtOUjKrWVuKQkgLkHuClTXqRbUEfTaJf";
 $db       = "prova5";
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 ];
 
 $errore  = "";
@@ -33,7 +32,7 @@ try {
             $utente = $stmt->fetch();
 
             if ($utente) {
-                $_SESSION['nomeutente'] = $utente['nome']; // ← salva in sessione
+                $_SESSION['nomeutente'] = $utente['nome'];
                 header("Location: ordine.php");
                 exit;
             } else {
@@ -184,14 +183,12 @@ try {
             <p class="messaggio-successo"><?= htmlspecialchars($successo) ?></p>
         <?php endif; ?>
 
-        <!-- STEP 1: scelta -->
         <div id="step-scelta">
             <h6 class="titoletto">Accedi o Registrati per ordinare</h6>
             <button type="button" class="scelta-btn" onclick="scegli('Accedi')">Accedi</button>
             <button type="button" class="scelta-btn" onclick="scegli('Registrati')">Registrati</button>
         </div>
 
-        <!-- STEP 2: credenziali -->
         <div id="step-credenziali">
             <h3 class="titoletto" id="titolo-step2">Accedi</h3>
             <p id="etichetta-azione"></p>
@@ -235,5 +232,4 @@ try {
         }
     </script>
 </body>
-
 </html>
