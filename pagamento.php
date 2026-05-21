@@ -17,14 +17,16 @@ $totale      = $_SESSION['totale'];
 $descrizione = $_SESSION['descrizione'];
 $note_ordine = $_SESSION['note_ordine'] ?? '';
 
-$host     = "sql108.infinityfree.com";
-$user     = "if0_41785966";
-$password = "DvM9xbqFLVzZ7y";
-$db       = "if0_41785966_wallah";
-$dsn      = "mysql:host=$host;dbname=$db;charset=utf8";
+$host     = "mysqlkebab-wallahkebab.f.aivencloud.com";
+$port     = "11837";
+$user     = "avnadmin";
+$password = "AVNS_L96Vz0Si_vPBARn006w";
+$db       = "prova5";
+$dsn      = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
 $options  = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 ];
 
 $errore        = "";
@@ -346,7 +348,6 @@ if ($carta_salvata) {
       background: #faf9f7;
       transition: border-color 0.2s;
       outline: none;
-      /* tap target generoso su mobile */
       min-height: 48px;
     }
 

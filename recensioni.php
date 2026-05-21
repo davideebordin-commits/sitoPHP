@@ -14,19 +14,23 @@
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
    ============================================================ */
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'wallah_kebab';
-$DB_USER = 'root';
-$DB_PASS = '';
+$DB_HOST = 'mysqlkebab-wallahkebab.f.aivencloud.com';
+$DB_PORT = '11837';
+$DB_NAME = 'prova5';
+$DB_USER = 'avnadmin';
+$DB_PASS = 'AVNS_L96Vz0Si_vPBARn006w';
 
 $errore = '';
 $successo = '';
 
 try {
     $pdo = new PDO(
-        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
+        "mysql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME;charset=utf8mb4",
         $DB_USER, $DB_PASS,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+        ]
     );
 } catch (PDOException $e) {
     die("Errore connessione DB: " . htmlspecialchars($e->getMessage()));
