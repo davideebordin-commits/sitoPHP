@@ -1,9 +1,12 @@
+Tutto il resto del menu è rimasto identico.
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu - Wallah Kebab</title>
+  <link rel="stylesheet" href="grafica.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -27,11 +30,19 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* BOTTONE HOME (logo) – come nelle altre pagine */
+    .imageHome {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 200;
+    }
+
     /* HEADER */
     .header {
       background: var(--nero);
       color: var(--bianco);
-      padding: 28px 20px 22px;
+      padding: 28px 20px 22px 110px; /* spazio per il logo a sinistra */
       text-align: center;
       position: sticky;
       top: 0;
@@ -177,9 +188,16 @@
         position: static;
       }
     }
+
+    /* Mobile: meno padding-left nello header ma logo comunque visibile */
+    @media (max-width: 380px) {
+      .header { padding-left: 90px; }
+    }
   </style>
 </head>
 <body>
+
+  <button class="imageHome" onclick="window.location.href='index.php'" aria-label="Torna alla home"></button>
 
   <div class="header">
     <h1>Wallah Kebab</h1>
