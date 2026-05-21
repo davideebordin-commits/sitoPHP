@@ -55,16 +55,20 @@ try {
         } elseif (strlen($cvv) !== 3 || !ctype_digit($cvv)) {
             $errore = "CVV non valido. Deve essere di 3 cifre.";
         } else {
+            date_default_timezone_set('Europe/Rome');
+            $dataOra = date('Y-m-d H:i:s');
+
             $pdo->beginTransaction();
 
             $stmt = $pdo->prepare(
                 "INSERT INTO ordine (nomeUtente, descrizioneOrdine, costoOrdine, data)
-                 VALUES (:utente, :descr, :costo, NOW())"
+                 VALUES (:utente, :descr, :costo, :data)"
             );
             $stmt->execute([
                 ':utente' => $nomeutente,
                 ':descr'  => $descrizione,
                 ':costo'  => $totale,
+                ':data'   => $dataOra,
             ]);
             $idOrdine = $pdo->lastInsertId();
 
@@ -136,7 +140,6 @@ if ($carta_salvata) {
       -webkit-font-smoothing: antialiased;
     }
 
-    /* HEADER */
     .header {
       background: var(--nero);
       color: var(--bianco);
@@ -157,7 +160,6 @@ if ($carta_salvata) {
       letter-spacing: 1px;
     }
 
-    /* LOGO */
     .imageHome {
       background-image: url('kebabbazzo.png');
       background-size: contain;
@@ -175,14 +177,12 @@ if ($carta_salvata) {
       z-index: 9999;
     }
 
-    /* CONTENITORE */
     .page-wrap {
       max-width: 520px;
       margin: 0 auto;
       padding: 20px 16px;
     }
 
-    /* CARD */
     .card {
       background: var(--bianco);
       border: 1px solid var(--bordo);
@@ -202,10 +202,7 @@ if ($carta_salvata) {
       margin-bottom: 18px;
     }
 
-    /* RIEPILOGO */
-    .riepilogo-lista {
-      list-style: none;
-    }
+    .riepilogo-lista { list-style: none; }
 
     .riepilogo-lista li {
       display: flex;
@@ -217,9 +214,7 @@ if ($carta_salvata) {
       gap: 8px;
     }
 
-    .riepilogo-lista li:last-child {
-      border-bottom: none;
-    }
+    .riepilogo-lista li:last-child { border-bottom: none; }
 
     .voce-sinistra {
       display: flex;
@@ -235,17 +230,8 @@ if ($carta_salvata) {
       text-overflow: ellipsis;
     }
 
-    .voce-qty {
-      color: var(--grigio-medio);
-      font-size: 0.82rem;
-      flex-shrink: 0;
-    }
-
-    .voce-prezzo {
-      font-weight: 500;
-      flex-shrink: 0;
-      font-size: 0.92rem;
-    }
+    .voce-qty { color: var(--grigio-medio); font-size: 0.82rem; flex-shrink: 0; }
+    .voce-prezzo { font-weight: 500; flex-shrink: 0; font-size: 0.92rem; }
 
     .totale-row {
       display: flex;
@@ -278,12 +264,7 @@ if ($carta_salvata) {
       line-height: 1.5;
     }
 
-    /* FORM */
-    .icone-carte {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
+    .icone-carte { display: flex; gap: 8px; margin-bottom: 18px; }
 
     .icona-carta {
       background: var(--nero);
@@ -323,9 +304,7 @@ if ($carta_salvata) {
       flex-shrink: 0;
     }
 
-    .form-group {
-      margin-bottom: 16px;
-    }
+    .form-group { margin-bottom: 16px; }
 
     .form-group label {
       display: block;
@@ -399,9 +378,7 @@ if ($carta_salvata) {
     }
 
     .btn-paga:hover,
-    .btn-paga:active {
-      background: #a93226;
-    }
+    .btn-paga:active { background: #a93226; }
 
     .msg-errore {
       background: #fff0f0;
@@ -426,7 +403,6 @@ if ($carta_salvata) {
       text-align: center;
     }
 
-    /* SUCCESSO */
     .successo-box {
       max-width: 360px;
       margin: 60px auto;
@@ -508,7 +484,6 @@ if ($carta_salvata) {
 
   <div class="page-wrap">
 
-    <!-- Riepilogo ordine -->
     <div class="card">
       <div class="card-title">Il tuo ordine</div>
       <ul class="riepilogo-lista">
@@ -535,7 +510,6 @@ if ($carta_salvata) {
       <?php endif; ?>
     </div>
 
-    <!-- Form pagamento -->
     <div class="card">
       <div class="card-title">Dati di pagamento</div>
 
