@@ -39,21 +39,27 @@ try {
                 $errore = "Nome utente o password errati!";
             }
 
-        } elseif ($_POST['azione'] === 'Registrati') {
-            try {
-                // ✅ Hasha la password prima di salvarla nel DB
-                $passwordHash = password_hash($passw, PASSWORD_BCRYPT);
+       } elseif ($_POST['azione'] === 'Registrati') {
+    try {
+        $passwordHash = password_hash($passw, PASSWORD_BCRYPT);
 
-                $sql  = "INSERT INTO utente (nome, password) VALUES (:nome, :passw)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':nome',  $nome,        PDO::PARAM_STR);
-                $stmt->bindParam(':passw', $passwordHash, PDO::PARAM_STR);
-                $stmt->execute();
-                $successo = "Registrazione avvenuta correttamente!";
-            } catch (PDOException $e) {
-                $errore = "QUESTO NOME UTENTE È GIÀ REGISTRATO! INSERISCI UN NOME UTENTE DIVERSO!";
-            }
+        $sql  = "INSERT INTO utente (nome, password) VALUES (:nome, :passw)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nome',  $nome,         PDO::PARAM_STR);
+        $stmt->bindParam(':passw', $passwordHash,  PDO::PARAM_STR);
+        $stmt->execute();
+        $successo = "Registrazione avvenuta correttamente!";
+
+    } catch (PDOException $e) {
+        // Errore 1062 = Duplicate entry (nome utente già esistente)
+        if ($e->getCode() == 23000) {
+            $errore = "QUESTO NOME UTENTE È GIÀ REGISTRATO! INSERISCI UN NOME UTENTE DIVERSO!";
+        } else {
+            // Mostra l'errore reale durante lo sviluppo
+            $errore = "Errore durante la registrazione: " . $e->getMessage();
         }
+    }
+}
     }
 } catch (PDOException $e) {
     $errore = "Errore di connessione: " . $e->getMessage();
