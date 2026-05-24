@@ -115,6 +115,10 @@ body{
     margin:24px 0 10px;
 }
 
+.menu-section-title:first-child{
+    margin-top:0;
+}
+
 /* CARD */
 
 .piatto-card{
@@ -288,7 +292,8 @@ body{
 }
 
 .carrello-lista-wrap.aperto{
-    max-height:300px;
+    max-height:340px;
+    overflow-y:auto;
 }
 
 #lista-riepilogo{
@@ -439,53 +444,57 @@ body{
 
 <?php
 
-$menu = [
-
-["001","Kebab nel pane","Pita, carne mista, insalata, pomodoro e salsa","6"],
-["002","Durum wrap","Pane yufka, carne e salsa piccante","7"],
-["003","Kebab box","Carne su riso basmati","9"],
-["004","Lahmacun","Pizza turca con carne speziata","7"],
-["005","Pide con carne","Barca di pane con formaggio","9"],
-["006","Pollo alla griglia","Pollo speziato con patatine","10"],
-["007","Patatine fritte","Croccanti con salsa","3"],
-["008","Ayran","Yogurt turco salato","2"],
-["009","Baklava","Dolce turco al pistacchio","4"],
-["010","Künefe","Pasta croccante con formaggio","6"]
-
+// ---------- PIATTI ----------
+$piatti = [
+    ["001","Kebab nel pane","Pita, carne mista, insalata, pomodoro e salsa","6"],
+    ["002","Durum wrap","Pane yufka, carne e salsa piccante","7"],
+    ["003","Kebab box","Carne su riso basmati","9"],
+    ["004","Lahmacun","Pizza turca con carne speziata","7"],
+    ["005","Pide con carne","Barca di pane con formaggio","9"],
+    ["006","Pollo alla griglia","Pollo speziato con patatine","10"],
+    ["007","Patatine fritte","Croccanti con salsa","3"],
+    ["008","Baklava","Dolce turco al pistacchio","4"],
+    ["009","Künefe","Pasta croccante con formaggio","6"]
 ];
 
-foreach($menu as $item){
+// ---------- BIBITE ----------
+$bibite = [
+    ["8", "Ayran",               "Yogurt turco salato, freddo", "2"],
+    ["11","Coca-Cola",           "Lattina 33cl",                 "3"],
+    ["12","Coca-Cola Zero",      "Lattina 33cl",                 "3"],
+    ["13","Fanta",               "Lattina 33cl",                 "3"],
+    ["14","Sprite",              "Lattina 33cl",                 "3"],
+    ["15","Acqua naturale",      "Bottiglia 50cl",               "1"],
+    ["16","Acqua frizzante",     "Bottiglia 50cl",               "1"],
+    ["17","Tè freddo al limone", "Lattina 33cl",                 "3"],
+    ["18","Birra Efes",          "Bottiglia 33cl",               "4"],
+    ["19","Birra Moretti",       "Bottiglia 33cl",               "4"]
+];
 
-echo '
-
-<div class="piatto-card" data-id="'.$item[0].'">
-
-    <span class="piatto-id">#'.$item[0].'</span>
-
-    <div class="piatto-info">
-
-        <div class="nome">'.$item[1].'</div>
-
-        <div class="desc">'.$item[2].'</div>
-
-    </div>
-
-    <div class="prezzo">€ '.$item[3].'</div>
-
-    <div class="qty-control">
-
-        <button class="qty-btn" onclick="cambia(this,-1)">−</button>
-
-        <span class="qty-display">0</span>
-
-        <button class="qty-btn" onclick="cambia(this,1)">+</button>
-
-    </div>
-
-</div>
-
-';
+function stampaCard($item){
+    echo '
+    <div class="piatto-card" data-id="'.$item[0].'">
+        <span class="piatto-id">#'.$item[0].'</span>
+        <div class="piatto-info">
+            <div class="nome">'.$item[1].'</div>
+            <div class="desc">'.$item[2].'</div>
+        </div>
+        <div class="prezzo">€ '.$item[3].'</div>
+        <div class="qty-control">
+            <button class="qty-btn" onclick="cambia(this,-1)">−</button>
+            <span class="qty-display">0</span>
+            <button class="qty-btn" onclick="cambia(this,1)">+</button>
+        </div>
+    </div>';
 }
+
+// Sezione Piatti
+echo '<div class="menu-section-title">Piatti</div>';
+foreach($piatti as $item){ stampaCard($item); }
+
+// Sezione Bibite
+echo '<div class="menu-section-title">Bibite</div>';
+foreach($bibite as $item){ stampaCard($item); }
 
 ?>
 
@@ -647,7 +656,7 @@ function aggiornaRiepilogo(){
 
             li.innerHTML =
                 `<span>${qty}× ${nome}</span>
-                 <span>€ ${sub.toFixed(0)}</span>`;
+                 <span>€ ${sub.toFixed(2)}</span>`;
 
             lista.appendChild(li);
         }
@@ -659,7 +668,7 @@ function aggiornaRiepilogo(){
             '<li><span class="msg-vuoto">Nessun articolo selezionato</span></li>';
     }
 
-    totaleEl.textContent = '€ ' + totale.toFixed(0);
+    totaleEl.textContent = '€ ' + totale.toFixed(2);
 
     btnConferma.disabled = !haVoci;
 
