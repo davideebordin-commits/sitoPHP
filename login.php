@@ -20,30 +20,34 @@ try {
     $pdo = new PDO($dsn, $user, $password, $options);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nome  = $_POST['nomeutente'];
+        $nome  = trim($_POST['nomeutente']);
         $passw = $_POST['password'];
 
         if ($_POST['azione'] === 'Accedi') {
-            $sql  = "SELECT * FROM utente WHERE nome = :nome AND password = :passw";
+            // ✅ Cerca solo per nome, poi verifica la password con password_verify()
+            $sql  = "SELECT * FROM utente WHERE nome = :nome";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':nome',  $nome,  PDO::PARAM_STR);
-            $stmt->bindParam(':passw', $passw, PDO::PARAM_STR);
+            $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
             $stmt->execute();
             $utente = $stmt->fetch();
 
-            if ($utente) {
+            if ($utente && password_verify($passw, $utente['password'])) {
                 $_SESSION['nomeutente'] = $utente['nome'];
                 header("Location: ordine.php");
                 exit;
             } else {
                 $errore = "Nome utente o password errati!";
             }
+
         } elseif ($_POST['azione'] === 'Registrati') {
             try {
+                // ✅ Hasha la password prima di salvarla nel DB
+                $passwordHash = password_hash($passw, PASSWORD_BCRYPT);
+
                 $sql  = "INSERT INTO utente (nome, password) VALUES (:nome, :passw)";
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':nome',  $nome,  PDO::PARAM_STR);
-                $stmt->bindParam(':passw', $passw, PDO::PARAM_STR);
+                $stmt->bindParam(':nome',  $nome,        PDO::PARAM_STR);
+                $stmt->bindParam(':passw', $passwordHash, PDO::PARAM_STR);
                 $stmt->execute();
                 $successo = "Registrazione avvenuta correttamente!";
             } catch (PDOException $e) {
